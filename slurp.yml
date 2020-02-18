@@ -1,0 +1,11 @@
+---
+- name: Testing the slurp module
+  host: all
+  tasks:
+  - name: Find out what the remote machine's mounts are
+    slurp:
+    src: /proc/mounts
+    register: mounts
+
+  - debug:
+    msg: "{{ mounts['content'] | b64decode }}"
